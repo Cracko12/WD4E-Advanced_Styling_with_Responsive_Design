@@ -1,143 +1,149 @@
+/* =============================================
+   BASE STYLES (Mobile-first — no media query)
+   ============================================= */
+
+/* Enable smooth scrolling by default */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    background-color: #dedede;
+  background-color: #f4f1ec;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2d5a27;
+  padding: 16px 10px;
 }
 
 h1 {
-    text-align: center;
-    font-family:Arial, sans-serif;
-    font-size: 32px;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
-    font-family:Arial, sans-serif;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  color: #ffffff;
+  margin: 0;
 }
 
 p {
-   font-size: 25px;
-   font-family:Arial, sans-serif;
+  font-size: 18px;
+  font-family: Georgia, serif;
+  text-align: center;
+  color: #2b2b2b;
+  max-width: 800px;
+  margin: 16px auto;
+  padding: 0 12px;
+  line-height: 1.6;
 }
 
-img{
-  width:100%;
+a {
+  color: #2d5a27;
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-weight: bold;
 }
 
-
-p{
-  text-align:center;
+a:hover {
+  text-decoration: underline;
 }
 
-div img{
-    width:150px;
-    height: 150px;
-    display:block;
-    margin:auto;
-}
-
-div{
-  display: inline-block;
-  width: 24%;
-  margin: 5px;
-  padding: 2px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-main {
-    border: 5px #000 solid;
-    margin: 10px;
-}
- */
-/* 
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-}
- */
-/* img{
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-} */
-
-/* .child {
-    position: relative;
-    display: inline-block;
-    border: 5px black solid;
-    margin: 5px;
-    border-radius: 5px;
-} */
-
-/* 
-
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.button {
-    display: inline-block;
-    border: 2px solid #000;
-    padding: 5px;
-    border-radius: 25px;
-}
- */
-/* 
-.button:hover {
-    background-color:#fff;
-} */
-
-/* 
 footer {
-    display: flex;
-    justify-content: center;
-} */
+  text-align: center;
+  padding: 20px;
+  font-family: Georgia, serif;
+}
 
-/* 
-header {
-    border-radius: 5px;
-    border: 5px #000 solid;
-    margin: 10px;
-} */
+/* --- Mobile grid: single column, 10px gap --- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 10px;
+}
 
-/* 
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.child:hover .label {
-    display: block;
-} */
+figure {
+  margin: 0;
+  background-color: #e8e2d7;
+  border: 2px solid #8a9a6a;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+figure img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+figcaption {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  color: #2b2b2b;
+  padding: 8px;
+}
+
+/* =============================================
+   TABLET VIEW — fires at 772px
+   ============================================= */
+@media (min-width: 772px) {
+  /* Two-column grid */
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Circular figures */
+  figure {
+    border-radius: 50%;
+  }
+
+  /* Last figure spans both columns */
+  figure:last-child {
+    grid-column: 1 / -1;
+    border-radius: 8px; /* reset circle for wide span */
+  }
+}
+
+/* =============================================
+   LARGE SCREEN VIEW — fires at 992px
+   ============================================= */
+@media (min-width: 992px) {
+  /* Every third figure spans both columns */
+  /* 3rd, 6th, 9th figures → nth-child(3n) */
+  figure:nth-child(3n) {
+    grid-column: 1 / -1;
+  }
+
+  /* Remove border-radius from ALL figures (no max-width used) */
+  figure,
+  figure:last-child {
+    border-radius: 0;
+  }
+}
+
+/* =============================================
+   REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =============================================
+   DARK COLOR SCHEME
+   (default assumed to be light)
+   ============================================= */
+@media (prefers-color-scheme: dark) {
+  figure {
+    background-color: #1e1e1e;
+    color: #f5e9a0;
+    border-color: #000000;
+  }
+
+  figcaption {
+    color: #f5e9a0;
+  }
+}
